@@ -26,7 +26,7 @@ Additionally it provides extra parameters which exist on both Client and Server 
 var StateRouter = require('asr-iso')
 var stateRouter = StateRouter(clientRender, rootLocation /* e.g. #here */, options);
 ``` 
-You supply a client rendering function for the library of your choice.  The server side renderer is based on *[Parse5](https://github.com/inikulin/parse5)* and is supplied for you. For example this is a Svelte client renderer, based on TehStrike's ASR Svelte Renderer but modified to be compatible with the SSR renderer in asr-iso.  
+You supply a client rendering function for the library of your choice.  The server side renderer is based on *[Parse5](https://github.com/inikulin/parse5)* and is supplied for you. For example this is a [Svelte](https://github.com/sveltejs/svelte) client renderer, based on TehStrike's ASR Svelte Renderer but modified to be compatible with the SSR renderer in asr-iso.  
 
 ```javascript
 var defaultOptions = {}
