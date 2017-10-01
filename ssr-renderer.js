@@ -3,8 +3,8 @@ var state
 module.exports = function(templateConstructor) {
     return function renderer(asr) {
         return {
-            render(info) {
-                let myElement = info.element.createChild(null, state)
+            render: function(info) {
+                var myElement = info.element.createChild(null, state)
                 myElement.asr = asr
                 if(templateConstructor && typeof templateConstructor === 'function') {
                     return Promise.resolve(templateConstructor(info))
@@ -16,11 +16,11 @@ module.exports = function(templateConstructor) {
                     return myElement
                 }
             },
-            getChildElement(element, cb) {
+            getChildElement: function(element, cb) {
                 cb(null, element)
             },
-            reset(info) {},
-            destroy(element) {}
+            reset: function() {},
+            destroy: function() {}
 
         }
     }

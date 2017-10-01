@@ -18,7 +18,7 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
     var ultimateParent = rootElement
     var addState = singleton.addState
     var stateRouter = Object.defineProperties(Object.assign(singleton, {
-        addState(state) {
+        addState: function(state) {
             var emitable = new EventEmitter()
             stateRouter.emit('add', state, isServer)
             if(isServer) {
@@ -38,7 +38,7 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
         }
     }), {
         singleton: {
-            get() {
+            get: function() {
                 return isServer ? null : singleton
             }
         }
@@ -84,6 +84,12 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
 
         }
         stateRouter.go = stateRouter.renderToHTML
+    } else {
+        var go = stateRouter.go
+        stateRouter.go = function(state, parameters, options, context) {
+            window.__context = context || window.__context
+            return go(state, parameters, options)
+        }
     }
     stateRouter.isNodeJS = isServer
     return stateRouter

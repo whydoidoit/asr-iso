@@ -3,13 +3,13 @@ var EventEmitter = require('eventemitter3')
 
 function getView(ast, tagOrAttribute) {
     if (!ast.childNodes) return null
-    for (let i = 0; i < ast.childNodes.length; i++) {
-        let child = ast.childNodes[i]
+    for (var i = 0; i < ast.childNodes.length; i++) {
+        var child = ast.childNodes[i]
         if (child.tagName === tagOrAttribute || (child.attrs && child.attrs.some(attr => attr.name === tagOrAttribute))) return child
     }
-    for (let i = 0; i < ast.childNodes.length; i++) {
-        let child = ast.childNodes[i]
-        let result = getView(child)
+    for (var i = 0; i < ast.childNodes.length; i++) {
+        var child = ast.childNodes[i]
+        var result = getView(child)
         if (result) return result
     }
     return null
@@ -63,10 +63,10 @@ var htmlFragment = module.exports = function (element, tagOrAttribute, state, co
         }
     }), {
         element: {
-            get() {
+            get: function() {
                 return parsedElement
             },
-            set(value) {
+            set: function(value) {
                 if (!value) {
                     parsedElement = null
                     return
@@ -80,10 +80,10 @@ var htmlFragment = module.exports = function (element, tagOrAttribute, state, co
             }
         },
         child: {
-            get() {
+            get: function() {
                 return childElement
             },
-            set(value) {
+            set: function(value) {
                 result.emit('child', value)
                 childElement = value
             }

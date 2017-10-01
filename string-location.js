@@ -7,7 +7,7 @@ module.exports = function location() {
     }
     emitter.go = go
     emitter.replace = go
-    emitter.get = () => {
+    emitter.get = function() {
         return emitter._currentRoute
     }
     Object.defineProperties(emitter, {
