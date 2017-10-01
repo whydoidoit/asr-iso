@@ -246,18 +246,30 @@ var events = require('./events')      // Wildcard hook events
 
 router.get('/', async function (req, res) {
     var id = req.cookies.routerId
+    
+    // Get or create the user representation
     var user
     if (!id) {
         id = shortid.generate()
         user = {}
+        // Allow hook(s) to set initial values
         events.emit(`initialize:${id}`, user)
     } else {
         user = JSON.parse((await redis.get(`--router-state--${id}`)) || "{}")
     }
+    // Allow hook(s) to update the values
     events.emit(`retrieve:${id}`, user)
+    
+    // Use a cookie to manage the user representation
     res.cookie('routerId', id, {maxAge: 1000 * 60 * 60 * 24 * 7 * 12})
+    
+    // Render the state
     var state = await stateRouter.go(user.state || 'app.home', {id: 123}, null, user)
+    
+    // Store the user representation
     await redis.set(`--router-state--${id}`, JSON.stringify(user))
+    
+    // Output the page
     res.render('index', {
         contents: state.html, 
         styles: state.css, 
