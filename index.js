@@ -18,10 +18,10 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
     var ultimateParent = rootElement
     var addState = singleton.addState
     var stateRouter = Object.defineProperties(Object.assign(singleton, {
-        addState: function(state) {
+        addState: function (state) {
             var emitable = new EventEmitter()
             stateRouter.emit('add', state, isServer)
-            if(isServer) {
+            if (isServer) {
                 states.push(state);
                 state.activate = state.activate || state.activateServer
             } else {
@@ -29,7 +29,7 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
                 state.activate = state.activate || state.activateClient
             }
             var activate = state.activate
-            state.activate = function(context) {
+            state.activate = function (context) {
                 emitable.emit('activate', context, isServer)
                 context.isServer = isServer
                 activate && activate(context, isServer)
@@ -38,7 +38,7 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
         }
     }), {
         singleton: {
-            get: function() {
+            get: function () {
                 return isServer ? null : singleton
             }
         }
@@ -51,7 +51,9 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
                 rootElement = rootElement || '<div ui-view></div>'
                 if (typeof rootElement === 'string') rootElement = htmlFragment(rootElement, stateRouterOptions.uiViewTagOrAttribute, context)
                 var localRouter = ASR(serverSideRenderer(stateRouterOptions.templateConstructor), rootElement, {router: newHashBrownRouter({}, stringLocation())})
-                states.forEach(state => localRouter.addState(state))
+                states.forEach(function (state) {
+                    localRouter.addState(state)
+                })
 
                 function removeEvents() {
                     localRouter.off('stateChangeEnd', success)
@@ -86,7 +88,7 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
         stateRouter.go = stateRouter.renderToHTML
     } else {
         var go = stateRouter.go
-        stateRouter.go = function(state, parameters, options, context) {
+        stateRouter.go = function (state, parameters, options, context) {
             window.__context = context || window.__context
             return go(state, parameters, options)
         }
