@@ -117,7 +117,7 @@ We will normally use an `id` or `class` CSS selector for the target so that the 
 
 ### Wiring up data into the template
 
-ASR uses a state's `activate` method to wire up data.  Libraries like Svelte have a different API on the server and client sides so you will probably need to supply different methods.  However, if you are going to populate the templates using data supplied by the `resolve` method or the global context then this can often be the same boiler plate code for every state.
+ASR uses a state's `activate` method to wire up data.  Libraries like Svelte have a different API on the server and client sides so you will probably need to supply different methods.  However, if you are going to populate the templates using data supplied by the `resolve` method, existing data, state parameters or the global context then this can often be the same boiler plate code for every state.
 
 Firstly each state may declare an `activateClient` and `activateServer` method that will be used appropriately.  In addition the standard `activate` method is passed a second parameter for `isServer` which is true on the server and falsey on the client and the general context for `activate` contains an `isServer` property.
 
