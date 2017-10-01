@@ -177,7 +177,7 @@ stateRouter.on('add', function (state, isServer) {
 })
 ```
 
-###Adding States
+### Adding States
 
 Adding states is then the same on the client and server:
 
@@ -222,7 +222,7 @@ stateRouter.addState({
 })
 ```
 
-###Setting a state
+### Setting a state
 
 On the server using `.go` will render the HTML and CSS for a state into an object:
 
@@ -279,7 +279,7 @@ block content
 ```
 Where `index.js` is the webpack bundled client version.
 
-####Client side state setting
+#### Client side state setting
 
 The API for the client side is exactly the same.
 
@@ -332,7 +332,7 @@ module.exports = load
 ```
 Or any other way you wish to make it work for both.  
 
-##WebPack client version
+## WebPack client version
 
 Ensure that *Parse5* is not included in the WebPack build by using the `Ignore Plugin` or specifying it as an `external`.  It isn't required on the client side and adds unnecessary bloat.
 
@@ -349,6 +349,6 @@ externals: {
     "parse5": "parse5"
 }
 ```
-#More Information
+# More Information
 
 For more information on designing states and the other APIs see [Abstract State Router](https://github.com/TehShrike/abstract-state-router)

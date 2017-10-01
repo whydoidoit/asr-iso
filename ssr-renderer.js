@@ -13,6 +13,7 @@ module.exports = function(templateConstructor) {
                             return myElement
                         })
                 } else {
+                    myElement.templateInstance = myElement.template
                     return myElement
                 }
             },

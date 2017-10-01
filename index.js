@@ -65,8 +65,8 @@ module.exports = function (renderer, rootElement, stateRouterOptions) {
 
                 function success() {
                     removeEvents()
-                    let css = []
-                    let html = rootElement.postRender(ultimateParent, css)
+                    var css = []
+                    var html = rootElement.postRender(ultimateParent, css)
                     resolve({html: html, css: css})
                 }
 
