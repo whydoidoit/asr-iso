@@ -8,7 +8,7 @@ This module aims to allow the creation of isomorphic state definitions that can 
 
 Using this library you can serve a page and then enhance it with Javascript without the user having to wait before they can start consuming the content.  When coupled with an isomorphic event wrapper you can also provide an interactive experience for clicks and forms that work even in the absence of Javascript on the client's browser.
 
-# Installing
+# Installing                                     
 
 ```shell
 npm install --save asr-iso
@@ -26,7 +26,7 @@ Additionally it provides extra parameters which exist on both Client and Server 
 var StateRouter = require('asr-iso')
 var stateRouter = StateRouter(clientRender, rootLocation /* e.g. #here */, options);
 ``` 
-You supply a client rendering function for the library of your choice.  The server side renderer is based on *[Parse5](https://github.com/inikulin/parse5)* and is supplied for you. For example this is a [Svelte](https://github.com/sveltejs/svelte) client renderer, based on TehStrike's ASR Svelte Renderer but modified to be compatible with the SSR renderer in asr-iso.  
+You supply a client rendering function for the library of your choice.  The server side renderer is based on *[Parse5](https://github.com/inikulin/parse5)* and is supplied for you. For example this is a [Svelte](https://github.com/sveltejs/svelte) client renderer, based on TehShrike's ASR Svelte Renderer but modified to be compatible with the SSR renderer in asr-iso.  
 
 ```javascript
 var defaultOptions = {}
