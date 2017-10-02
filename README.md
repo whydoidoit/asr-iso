@@ -4,7 +4,7 @@ An isomorphic Server and Client side wrapper for [Abstract State Router](https:/
 
 # Goal
 
-This module aims to allow the creation of isomorphic state definitions that can be used to render ASR states on the browser and the client.  It's designed for use in Progressive Web Apps that want to serve the proper state experience without the need for Javascript to be ready before the page looks right.
+This module aims to allow the creation of isomorphic state definitions that can be used to render ASR states on the browser and the server.  It's designed for use in Progressive Web Apps that want to serve the proper state experience without the need for Javascript to be ready before the page looks right.
 
 Using this library you can serve a page and then enhance it with Javascript without the user having to wait before they can start consuming the content.  When coupled with an isomorphic event wrapper you can also provide an interactive experience for clicks and forms that work even in the absence of Javascript on the client's browser.
 
