@@ -1,6 +1,6 @@
 {
   "name": "asr-iso",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Abstract State Router wrapper with server side and client side support",
   "main": "index.js",
   "scripts": {

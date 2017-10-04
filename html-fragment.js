@@ -25,12 +25,15 @@ var htmlFragment = module.exports = function (element, tagOrAttribute, state, co
         postRender: function (id, css) {
             result.emit('postRender', result)
             if (!parsedElement) throw new Error("Nothing to do")
+            if (css && result.css) {
+                css.push(result.css)
+            }
+
             if (result.data && state) {
                 Array.prototype.push.apply(parsedElement.childNodes, parse5.parseFragment('<script>var dataIslands = dataIslands || {};dataIslands["' + state.name + '"] = ' + JSON.stringify(result.data) + ';</script>').childNodes)
 
             }
             if (!result.child) {
-
                 return parse5.serialize(parsedElement)
             }
             if (!result.child.postRender) throw new Error("Child should be an htmlFragment object")
@@ -46,9 +49,6 @@ var htmlFragment = module.exports = function (element, tagOrAttribute, state, co
                 if (firstCharacter === '.') {
                     attrs.push({name: 'class', value: id.slice(1)})
                 }
-            }
-            if (css && result.css) {
-                css.push(result.css)
             }
             Array.prototype.push.apply(view.childNodes, parse5.parseFragment(result.child.postRender(null, css)).childNodes)
             if (result.child.data && state) {
